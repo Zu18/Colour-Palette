@@ -13,9 +13,15 @@ const tiles = document.querySelectorAll('.tile')
 window.addEventListener('load', () => {
     // Set random background colors for each tile
     tiles.forEach(tile => {
-        tile.style.backgroundColor = getRandomColour();
+        const randomColor = getRandomColour()
+        tile.style.backgroundColor = randomColor;
+
+        // Set the color name at the bottom of the tile
+        const colorNameElement = tile.querySelector('.color-name');
+        colorNameElement.textContent = randomColor;
     });
 });
+
 
 // Function to generate a random colour
 function getRandomColour() {
