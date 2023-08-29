@@ -29,7 +29,7 @@ body {
     cursor: pointer;
 }
 
-.tile .color-name::before {
+.color-name::before {
     content: "Select color";
     visibility: hidden;
     position: absolute;
@@ -44,7 +44,7 @@ body {
     line-height: 25px;
     z-index: 1;
 }
-.tile .color-name::after {
+.color-name::after {
     visibility: hidden;
     content: "";
     position: absolute;
@@ -63,5 +63,4 @@ body {
 .tile:hover .color-name::after {
     visibility: visible;
 }
-
 

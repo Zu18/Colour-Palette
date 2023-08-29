@@ -9,7 +9,6 @@ const memoryGameContainer = document.querySelector('.container');
 // Get the array of tiles
 const tiles = document.querySelectorAll('.tile')
 
-//
 window.addEventListener('load', () => {
     // Set random background colors for each tile
     tiles.forEach(tile => {
@@ -19,9 +18,9 @@ window.addEventListener('load', () => {
         // Set the color name at the bottom of the tile
         const colorNameElement = tile.querySelector('.color-name');
         colorNameElement.textContent = randomColor;
+
     });
 });
-
 
 // Function to generate a random colour
 function getRandomColour() {
