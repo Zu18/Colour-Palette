@@ -64,3 +64,10 @@ body {
     visibility: visible;
 }
 
+.color-picker {
+    opacity:0;
+    width:100%;
+    position:absolute;
+    bottom: 50px;
+
+}

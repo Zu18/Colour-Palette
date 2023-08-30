@@ -19,6 +19,15 @@ window.addEventListener('load', () => {
         const colorNameElement = tile.querySelector('.color-name');
         colorNameElement.textContent = randomColor;
 
+        const colorPicker = tile.querySelector('input[type="color"]');
+        colorNameElement.addEventListener('click', function() {
+            colorPicker.click(); // Automatically open color picker
+
+            colorPicker.addEventListener('input', function() {
+                tile.style.backgroundColor = colorPicker.value;
+                colorNameElement.textContent = colorPicker.value;
+            }); // Set tile background color
+        });
     });
 });
 
