@@ -49,6 +49,9 @@ function initializeTiles() {
         setColorName(colorNameElement, randomColor);
 
         openColorPickerAndSetBackground(tile, colorNameElement);
+        
+        // Add the buttons that allows to remove tiles
+        removeTile();
     });
 }
 
@@ -58,3 +61,13 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 
+
+function removeTile() {
+    const removeButtons = document.querySelectorAll('.remove-btn');
+    removeButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            const tileToRemove = button.closest('.tile');
+            tileToRemove.remove(); // Remove the parent .color-bts container
+        });
+    });
+}
