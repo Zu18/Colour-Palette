@@ -87,6 +87,8 @@ body {
     min-width: 30px;
 }
 
-.remove-btn {
+.remove-btn, .drag-btn {
     cursor: pointer;
 }
+
+

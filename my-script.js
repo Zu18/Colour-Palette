@@ -30,7 +30,7 @@ function openColorPickerAndSetBackground(tile, colorNameElement) {
 
     // Set tile background color
     colorPicker.addEventListener('input', function() {
-        const selectedColor = colorPicker.value;
+        const selectedColor = colorPicker.value.toUpperCase();
         setTileBackgroundColor(tile, selectedColor);
         setColorName(colorNameElement, selectedColor);
     });
