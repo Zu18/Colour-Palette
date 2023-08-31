@@ -61,13 +61,16 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 
-
+// Remove the tile if there are more than 2 tiles left
 function removeTile() {
     const removeButtons = document.querySelectorAll('.remove-btn');
     removeButtons.forEach(button => {
         button.addEventListener('click', function() {
             const tileToRemove = button.closest('.tile');
-            tileToRemove.remove(); // Remove the parent .color-bts container
+            const tiles = document.querySelectorAll('.tile');
+            if (tiles.length > 2) {
+                tileToRemove.remove();
+            }
         });
     });
 }
