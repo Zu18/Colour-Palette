@@ -18,6 +18,7 @@ body {
     line-height: 50px;
     border: 1px solid black;
     position: relative;
+    cursor: move;
 }
 
 .color-name {
@@ -87,8 +88,13 @@ body {
     min-width: 30px;
 }
 
-.remove-btn, .drag-btn {
+.remove-btn {
     cursor: pointer;
 }
+
+.tile.over {
+    border: 3px dotted #666;
+}
+
 
 
