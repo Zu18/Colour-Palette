@@ -1,8 +1,3 @@
-// Create an array with palette variations
-// I want to add this functional later
-const colourValues = [
-    '#EDEEC9', '#DDE7C7', '#BFD8BD', '#98C9A3', '#77BFA3'
-];
 
 function setTileBackgroundColor(tile, color) {
     tile.style.backgroundColor = color;
@@ -35,44 +30,6 @@ function openColorPickerAndSetBackground(tile, colorNameElement) {
         setColorName(colorNameElement, selectedColor);
     });
 }
-
-function initializeTiles() {
-    const tiles = document.querySelectorAll('.tile');
-
-    tiles.forEach(tile => {
-        // Set random background colors for each tile
-        const randomColor = getRandomColour();
-        setTileBackgroundColor(tile, randomColor);
-
-        // Set the color name at the bottom of the tile
-        const colorNameElement = tile.querySelector('.color-name');
-        setColorName(colorNameElement, randomColor);
-
-        openColorPickerAndSetBackground(tile, colorNameElement);
-        
-        // Add the buttons that allows to remove tiles
-        removeTile();
-
-        let items = document.querySelectorAll('.container .tile');
-        items.forEach(function (item) {
-            item.setAttribute('draggable', true);
-            item.addEventListener('dragstart', handleDragStart);
-            item.addEventListener('dragover', handleDragOver);
-            item.addEventListener('dragenter', handleDragEnter);
-            item.addEventListener('dragleave', handleDragLeave);
-            item.addEventListener('dragend', handleDragEnd);
-            item.addEventListener('drop', handleDrop);
-        });
-
-    });
-}
-
-// Main code
-document.addEventListener('DOMContentLoaded', function() {
-    initializeTiles();
-});
-
-
 // Remove the tile if there are more than 2 tiles left
 function removeTile() {
     const removeButtons = document.querySelectorAll('.remove-btn');
@@ -87,6 +44,18 @@ function removeTile() {
     });
 }
 
+// Swap tiles
+function dragAndDropTiles(tiles) {
+    tiles.forEach(function (tile) {
+        tile.setAttribute('draggable', true);
+        tile.addEventListener('dragstart', handleDragStart);
+        tile.addEventListener('dragover', handleDragOver);
+        tile.addEventListener('dragenter', handleDragEnter);
+        tile.addEventListener('dragleave', handleDragLeave);
+        tile.addEventListener('dragend', handleDragEnd);
+        tile.addEventListener('drop', handleDrop);
+    });
+}
 // Swap elements (tiles)
 function handleDragStart(e) {
     this.style.opacity = '0.4';
@@ -140,3 +109,34 @@ function handleDrop(e) {
 
     return false;
 }
+
+function initializeTiles() {
+    const tiles = document.querySelectorAll('.tile');
+
+    tiles.forEach(tile => {
+        // Set random background colors for each tile
+        const randomColor = getRandomColour();
+        setTileBackgroundColor(tile, randomColor);
+
+        // Set the color name at the bottom of the tile
+        const colorNameElement = tile.querySelector('.color-name');
+        setColorName(colorNameElement, randomColor);
+
+        openColorPickerAndSetBackground(tile, colorNameElement);
+        
+        // Add the buttons that allows to remove tiles
+        removeTile();
+
+        // Swap tiles by moving the tiles, drag-btn is informational
+        dragAndDropTiles(tiles);
+
+    });
+}
+
+// Main code
+document.addEventListener('DOMContentLoaded', function() {
+    initializeTiles();
+});
+
+
+

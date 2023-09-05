@@ -8,15 +8,16 @@ body {
 .container {
     display: flex;
     flex-wrap: nowrap;
-    height: 100vh; /* Set the container height to full viewport height */
+    height: 100vh;
+    /* Set the container height to full viewport height */
 }
 
 .tile {
     background: orange;
-    flex: 1; /* This ensures equal distribution */
+    flex: 1;
+    /* This ensures equal distribution */
     text-align: center;
     line-height: 50px;
-    border: 1px solid black;
     position: relative;
     cursor: move;
 }
@@ -48,6 +49,7 @@ body {
     line-height: 25px;
     z-index: 1;
 }
+
 .color-name::after {
     visibility: hidden;
     content: "";
@@ -68,10 +70,14 @@ body {
     visibility: visible;
 }
 
+.tile:hover .color-btns {
+    display: block;
+}
+
 .color-picker {
-    opacity:0;
-    width:100%;
-    position:absolute;
+    opacity: 0;
+    width: 100%;
+    position: absolute;
     bottom: 50px;
 }
 
@@ -83,9 +89,11 @@ body {
     display: flex;
     flex-direction: column;
     padding: 10px;
-    background-color: lightgray;
     max-width: 40px;
     min-width: 30px;
+    color: #fff;
+    background-color: rgba(0, 0, 0, 0.1);
+    display: none;
 }
 
 .remove-btn {
@@ -93,8 +101,5 @@ body {
 }
 
 .tile.over {
-    border: 3px dotted #666;
+    border: 3px dotted #0a0a0a;
 }
-
-
-
