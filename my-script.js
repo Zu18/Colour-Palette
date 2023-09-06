@@ -19,12 +19,12 @@ function setColorName(element, color) {
 function openColorPickerAndSetBackground(tile, colorNameElement) {
     const colorPicker = tile.querySelector('input[type="color"]');
 
-    colorNameElement.addEventListener('click', function() {
+    colorNameElement.addEventListener('click', function () {
         colorPicker.click(); // Automatically open color picker
     });
 
     // Set tile background color
-    colorPicker.addEventListener('input', function() {
+    colorPicker.addEventListener('input', function () {
         const selectedColor = colorPicker.value.toUpperCase();
         setTileBackgroundColor(tile, selectedColor);
         setColorName(colorNameElement, selectedColor);
@@ -34,7 +34,7 @@ function openColorPickerAndSetBackground(tile, colorNameElement) {
 function removeTile() {
     const removeButtons = document.querySelectorAll('.remove-btn');
     removeButtons.forEach(button => {
-        button.addEventListener('click', function() {
+        button.addEventListener('click', function () {
             const tileToRemove = button.closest('.tile');
             const tiles = document.querySelectorAll('.tile');
             if (tiles.length > 2) {
@@ -123,7 +123,7 @@ function initializeTiles() {
         setColorName(colorNameElement, randomColor);
 
         openColorPickerAndSetBackground(tile, colorNameElement);
-        
+
         // Add the buttons that allows to remove tiles
         removeTile();
 
@@ -134,9 +134,23 @@ function initializeTiles() {
 }
 
 // Main code
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     initializeTiles();
 });
+
+
+function addTile() {
+    // Get an existing color tile to clone
+    const sampleTile = document.querySelector('.tile');
+
+    // Clone the sample tile, including child divs, classes, and styles
+    const newTile = sampleTile.cloneNode(true);
+
+
+    // Add the new color tile to the palette
+    const palette = document.querySelector('.container')
+    palette.appendChild(newTile);
+}
 
 
 

@@ -20,6 +20,7 @@ body {
     line-height: 50px;
     position: relative;
     cursor: move;
+    border: solid 2px #0a0a0a;
 }
 
 .color-name {
@@ -102,4 +103,8 @@ body {
 
 .tile.over {
     border: 3px dotted #0a0a0a;
+}
+
+.add-tile {
+    cursor: pointer;
 }
