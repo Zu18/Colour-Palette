@@ -30,30 +30,34 @@ function openColorPickerAndSetBackground(tile, colorNameElement, colorPicker) {
     });
 }
 // Remove the tile if there are more than 2 tiles left
-function removeTile() {
-    const removeButtons = document.querySelectorAll('.remove-btn');
-    removeButtons.forEach(button => {
-        button.addEventListener('click', function () {
-            const tileToRemove = button.closest('.tile');
-            const tiles = document.querySelectorAll('.tile');
-            if (tiles.length > 2) {
-                tileToRemove.remove();
-            }
-        });
+function removeTile(removeBtn, tile) {
+    removeBtn.addEventListener('click', function () {
+        const tileToRemove = tile;
+        const tiles = document.querySelectorAll('.tile');
+        if (tiles.length > 2) {
+            tileToRemove.remove();
+        }
+    });
+}
+
+function addTile(addTileBtn) {
+    addTileBtn.addEventListener('click', function () {
+        const tiles = document.querySelectorAll('.tile');
+        if (tiles.length < 10) {
+            createTile(); // Create a new tile element
+        }
     });
 }
 
 // Swap tiles
-function dragAndDropTiles(tiles) {
-    tiles.forEach(function (tile) {
-        tile.setAttribute('draggable', true);
-        tile.addEventListener('dragstart', handleDragStart);
-        tile.addEventListener('dragover', handleDragOver);
-        tile.addEventListener('dragenter', handleDragEnter);
-        tile.addEventListener('dragleave', handleDragLeave);
-        tile.addEventListener('dragend', handleDragEnd);
-        tile.addEventListener('drop', handleDrop);
-    });
+function dragAndDropTiles(tile) {
+    tile.setAttribute('draggable', true);
+    tile.addEventListener('dragstart', handleDragStart);
+    tile.addEventListener('dragover', handleDragOver);
+    tile.addEventListener('dragenter', handleDragEnter);
+    tile.addEventListener('dragleave', handleDragLeave);
+    tile.addEventListener('dragend', handleDragEnd);
+    tile.addEventListener('drop', handleDrop);
 }
 // Swap elements (tiles)
 function handleDragStart(e) {
@@ -121,6 +125,7 @@ function createTile() {
     const removeBtn = document.createElement('div');
     removeBtn.classList.add('remove-btn');
     removeBtn.innerHTML = '<i class="fa fa-times"></i>';
+    removeTile(removeBtn, tile);
 
     // Create the add-tile button
     const addTileBtn = document.createElement('div');
@@ -132,6 +137,7 @@ function createTile() {
     const dragBtn = document.createElement('div');
     dragBtn.classList.add('drag-btn');
     dragBtn.innerHTML = '<i class="fa fa-arrows-h"></i>';
+    dragAndDropTiles(tile);
 
     // Append color buttons to the tile
     colorBtns.appendChild(removeBtn);
@@ -165,11 +171,6 @@ function createTile() {
     // Append the tile to the container
     const container = document.querySelector('.container')
     container.appendChild(tile);
-
-    // Add the buttons that allow removing, dragging tiles
-    removeTile();
-    dragAndDropTiles(document.querySelectorAll('.tile'));
-    // addTile();
 }
 
 function initializeTiles() {
@@ -182,18 +183,9 @@ function initializeTiles() {
 // Main code
 document.addEventListener('DOMContentLoaded', function () {
     initializeTiles();
-
-    //addTile();
 });
 
-function addTile(addTileBtn) {
-    addTileBtn.addEventListener('click', function () {
-        const tiles = document.querySelectorAll('.tile');
-        if (tiles.length < 10) {
-            createTile(); // Create a new tile element
-        }
-    });
-}
+
 
 
 
