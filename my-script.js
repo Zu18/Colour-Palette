@@ -16,8 +16,7 @@ function setColorName(element, color) {
     element.textContent = color;
 }
 
-function openColorPickerAndSetBackground(tile, colorNameElement) {
-    const colorPicker = tile.querySelector('input[type="color"]');
+function openColorPickerAndSetBackground(tile, colorNameElement, colorPicker) {
 
     colorNameElement.addEventListener('click', function () {
         colorPicker.click(); // Automatically open color picker
@@ -111,46 +110,79 @@ function handleDrop(e) {
 }
 
 function initializeTiles() {
-    const tiles = document.querySelectorAll('.tile');
+    const container = document.querySelector('.container');
+  
+    for (let i = 0; i < 5; i++) {
+      const tile = document.createElement('div');
+      tile.classList.add('tile');
+  
+      // Create the color buttons container
+      const colorBtns = document.createElement('div');
+      colorBtns.classList.add('color-btns');
+  
+      // Create the remove button
+      const removeBtn = document.createElement('div');
+      removeBtn.classList.add('remove-btn');
+      removeBtn.innerHTML = '<i class="fa fa-times"></i>';
+  
+      // Create the add-tile button
+      const addTileBtn = document.createElement('div');
+      addTileBtn.classList.add('add-tile');
+      addTileBtn.innerHTML = '<i class="fa fa-plus"></i>';
+  
+      // Create the drag button
+      const dragBtn = document.createElement('div');
+      dragBtn.classList.add('drag-btn');
+      dragBtn.innerHTML = '<i class="fa fa-arrows-h"></i>';
+  
+      // Append color buttons to the tile
+      colorBtns.appendChild(removeBtn);
+      colorBtns.appendChild(addTileBtn);
+      colorBtns.appendChild(dragBtn);
+  
+      // Create the color picker input
+      const colorPicker = document.createElement('input');
+      colorPicker.type = 'color';
+      colorPicker.classList.add('color-picker');
+  
+      // Create the color name div
+      const colorNameElement = document.createElement('div');
+      colorNameElement.classList.add('color-name');
 
-    tiles.forEach(tile => {
-        // Set random background colors for each tile
-        const randomColor = getRandomColour();
-        setTileBackgroundColor(tile, randomColor);
+      // Set random background colors for each tile
+      const randomColor = getRandomColour();
+      setTileBackgroundColor(tile, randomColor);
 
-        // Set the color name at the bottom of the tile
-        const colorNameElement = tile.querySelector('.color-name');
-        setColorName(colorNameElement, randomColor);
+      // Set the color name at the bottom of the tile
+      setColorName(colorNameElement, randomColor);
 
-        openColorPickerAndSetBackground(tile, colorNameElement);
+      // Add functionality to change the color of tile
+      openColorPickerAndSetBackground(tile, colorNameElement, colorPicker)
+  
+      // Append all elements to the tile
+      tile.appendChild(colorBtns);
+      tile.appendChild(colorPicker);
+      tile.appendChild(colorNameElement);
 
-        // Add the buttons that allows to remove tiles
-        removeTile();
+      // Append the tile to the container
+      container.appendChild(tile);
+    }
 
-        // Swap tiles by moving the tiles, drag-btn is informational
-        dragAndDropTiles(tiles);
-
-    });
-}
+  }
+  
 
 // Main code
 document.addEventListener('DOMContentLoaded', function () {
     initializeTiles();
+
+    // Add the buttons that allows to remove tiles
+    removeTile();
+
+    // Swap tiles by moving the tiles, drag-btn is informational
+    const tiles = document.querySelectorAll('.tile');
+    dragAndDropTiles(tiles);
+    
+
+    // addTile();
 });
-
-
-function addTile() {
-    // Get an existing color tile to clone
-    const sampleTile = document.querySelector('.tile');
-
-    // Clone the sample tile, including child divs, classes, and styles
-    const newTile = sampleTile.cloneNode(true);
-
-
-    // Add the new color tile to the palette
-    const palette = document.querySelector('.container')
-    palette.appendChild(newTile);
-}
-
-
 
