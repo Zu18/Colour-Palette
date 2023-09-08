@@ -62,21 +62,15 @@ body {
     border-color: rgba(0, 0, 0, 0.5) transparent transparent transparent;
 }
 
-.tile:hover .color-name::before {
-    visibility: visible;
-}
-
-.tile:hover .color-name::after {
-    visibility: visible;
-}
-
-.tile:hover .color-btns {
-    display: block;
+/* Show tooltip on hover */
+.color-name:hover::before,
+.color-name:hover::after {
+  visibility: visible;
 }
 
 .color-picker {
     opacity: 0;
-    width: 100%;
+    width: 30px;
     position: absolute;
     bottom: 50px;
 }
@@ -95,6 +89,10 @@ body {
     background-color: rgba(0, 0, 0, 0.1);
     display: none;
 }
+
+.tile:hover .color-btns {
+    display: block;
+} 
 
 .remove-btn {
     cursor: pointer;

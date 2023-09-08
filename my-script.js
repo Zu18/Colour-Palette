@@ -61,7 +61,7 @@ function dragAndDropTiles(tile) {
 }
 // Swap elements (tiles)
 function handleDragStart(e) {
-    this.style.opacity = '0.4';
+    this.style.opacity = '0.8';
 
     dragSrcEl = this;
 
